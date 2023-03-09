@@ -38,11 +38,15 @@ const UserCard: React.FC<UserCardProps> = ({ name }) => {
 
 const Profiles = () => {
   const router = useRouter();
-  const { data: currentUser } = useCurrentUser();
+  const { data: currentUser, isLoading } = useCurrentUser();
 
   const selectProfile = useCallback(() => {
     router.push("/");
   }, [router]);
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <div className="flex items-center h-full justify-center">
